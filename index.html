@@ -293,18 +293,41 @@ a:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; border-r
   .intro h1 { font-size: clamp(33px, 4.35vw, 40px); }
 }
 
-/* When there is not enough room for both columns, keep the action group
-   together on a dedicated row, consistently aligned to the right. */
+/* On narrow screens the buttons belong immediately below each paper title,
+   instead of occupying a fixed-width column at the right edge. */
 @media (max-width: 680px) {
-  .entry-header { grid-template-columns: minmax(0, 1fr); row-gap: 12px; }
-  .paper-actions { justify-self: end; }
+  .entry-header {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 12px;
+  }
+  .paper-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-self: start;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 9px;
+    max-width: 100%;
+    padding-top: 0;
+  }
+  .paper-actions > :only-child { grid-column: auto; }
+  .paper-action {
+    flex: 0 0 auto;
+    width: auto;
+    min-height: 40px;
+    padding: 7px 13px;
+    font-size: 11.5px;
+    letter-spacing: .105em;
+  }
+  .toggle-mark { margin-left: .28em; }
 }
 
 /* Compact tablets / mobile: one clear reading column. */
 @media (max-width: 740px) {
   .intro { grid-template-columns: minmax(0, 1fr); gap: 28px; padding: 40px 0 22px; }
   .intro-copy { max-width: 720px; }
-  .figure { justify-self: start; max-width: 235px; }
+  /* On mobile, the portrait is centered above the name and biography. */
+  .figure { order: -1; justify-self: center; max-width: 235px; }
   .rubric { margin-top: 34px; }
   .entry h2 { font-size: 26px; }
 }
@@ -316,7 +339,7 @@ a:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; border-r
   .intro h1 { font-size: clamp(32px, 7.8vw, 38px); }
   .intro .role { margin-bottom: 18px; font-size: 18px; }
   .intro p { font-size: 17.5px; line-height: 1.6; }
-  .figure { max-width: min(210px, 65vw); }
+  .figure { max-width: min(190px, 62vw); }
   .rubric { gap: 14px; margin: 33px 0 12px; }
   .rubric .label { font-size: 13.5px; letter-spacing: .15em; }
   .entry { padding: 18px 0 22px; }
@@ -324,7 +347,7 @@ a:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; border-r
   .entry-header { row-gap: 12px; }
   .entry h2 { font-size: 23px; }
   .entry .byline { font-size: 17.5px; }
-  .paper-action { min-height: 39px; font-size: 12.5px; }
+  .paper-action { min-height: 40px; font-size: 11.5px; }
   .abstract-panel { margin-top: 17px; padding: 16px 18px; }
   .abstract-panel p { font-size: 17.5px; line-height: 1.6; }
   .bottom { margin-top: 44px; }
@@ -335,11 +358,75 @@ a:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; border-r
   .intro h1 { font-size: 30px; }
   .rubric { gap: 10px; }
   .rubric .label { font-size: 12.5px; letter-spacing: .12em; }
-  .paper-actions { gap: 12px; }
+  .paper-actions { gap: 8px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+/* Mobile: keep the full name on a single line without horizontal scrolling. */
+@media (max-width: 740px) {
+  .intro h1 {
+    font-size: clamp(26px, 8.25vw, 40px);
+    line-height: 1.12;
+    letter-spacing: -.023em;
+    white-space: nowrap;
+    text-wrap: nowrap;
+    text-align: center;
+  }
+  .entry-header:not(.entry-header--full) {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 2px;
+  }
+  .paper-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-self: start;
+    justify-content: flex-start;
+    max-width: 100%;
+    padding: 0;
+  }
+  .paper-actions > :only-child { grid-column: auto; }
+  .paper-action {
+    width: auto;
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    white-space: nowrap;
+  }
+  .paper-action:hover { background: none; }
+  .paper-action[href]::after {
+    content: "\2197";
+    font: 12px Arial, Helvetica, sans-serif;
+    margin-left: 5px;
+  }
+  .toggle-mark { margin-left: .35em; font-size: inherit; }
+}
+
+/* Option B: small editorial navigation labels, without pill buttons. */
+@media (max-width: 740px) {
+  .paper-actions { gap: 25px; }
+  .paper-action {
+    min-height: 42px;
+    padding: 9px 0 7px;
+    border: 0;
+    border-bottom: 1px solid rgba(116, 83, 61, .35);
+    color: var(--link);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: .115em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .paper-action:hover { color: var(--link-hover); border-bottom-color: currentColor; }
 }
 </style>
 </head>
