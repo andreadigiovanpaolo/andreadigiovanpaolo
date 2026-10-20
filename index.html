@@ -21,7 +21,13 @@
 }
 
 * { box-sizing: border-box; }
-html { font-size: 16px; scroll-behavior: smooth; }
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  /* Keep iOS Safari from automatically enlarging titles in differently sized grid columns. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
 body {
   margin: 0;
   background: var(--paper);
@@ -178,11 +184,12 @@ a:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; border-r
   line-height: 1.5;
 }
 .entry-info { min-width: 0; }
+/* Consistent title sizing for JMP, working papers, and work in progress. */
 .entry h2 {
   max-width: 1100px;
   margin: 0 0 4px;
   color: var(--accent);
-  font-size: clamp(24px, 2.15vw, 28px);
+  font-size: clamp(23px, calc(15px + 0.85vw), 28px);
   font-weight: 400;
   letter-spacing: -.015em;
   line-height: 1.26;
@@ -325,7 +332,6 @@ a:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; border-r
   /* The portrait precedes and centers over the name on phones. */
   .figure { order: -1; justify-self: center; max-width: 235px; }
   .rubric { margin-top: 34px; }
-  .entry h2 { font-size: 26px; }
 }
 
 @media (max-width: 520px) {
@@ -341,7 +347,6 @@ a:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; border-r
   .entry { padding: 18px 0 22px; }
   .entry + .entry { padding-top: 24px; }
   .entry-header { row-gap: 12px; }
-  .entry h2 { font-size: 23px; }
   .entry .byline { font-size: 17.5px; }
   .paper-action { min-height: 40px; font-size: 11.5px; }
   .abstract-panel { margin-top: 17px; padding: 16px 18px; }
@@ -425,6 +430,22 @@ a:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; border-r
     height: 12px;
     margin-left: 5px;
     stroke: currentColor;
+  }
+}
+
+/* iPhone-sized devices in landscape can enlarge long blocks of text as
+   multiple abstracts are revealed (Safari text autosizing). Disable that
+   adjustment only for abstract text in short, touch-screen landscapes. */
+@media (orientation: landscape) and (max-height: 540px) and (hover: none) and (pointer: coarse) {
+  html,
+  .abstract-panel,
+  .abstract-panel p {
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+  }
+  .abstract-panel p {
+    font-size: 17.5px;
+    line-height: 1.6;
   }
 }
 </style>
