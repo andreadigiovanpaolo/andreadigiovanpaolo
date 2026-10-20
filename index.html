@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Andrea Di Giovan Paolo — PhD Candidate in Economics at Northwestern University.">
+<title>Andrea Di Giovan Paolo</title>
+<style>
+:root {
+  --paper: #ffffff;
+  --ink: #211e1a;
+  --muted: #746d64;
+  --accent: #624a35;
+  --green: #43564b;
+  --link: #74533d;
+  --link-hover: #3e5147;
+  --rule: rgba(46,42,37,.24);
+  --rule-soft: rgba(46,42,37,.12);
+  --photo-border: rgba(76,66,55,.32);
+  --panel-bg: rgba(98,74,53,.04);
+}
+
+* { box-sizing: border-box; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "EB Garamond", "Iowan Old Style", Baskerville, Palatino, "Palatino Linotype", Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  line-height: 1.65;
+}
+
+::selection { background: rgba(96,72,49,.16); }
+a { color: inherit; }
+a:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; border-radius: 2px; }
+
+/* Balanced desktop reading width, with fluid margins on smaller screens. */
+.sheet {
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
+  padding: clamp(30px, 3.7vw, 52px) clamp(22px, 4vw, 68px) 80px;
+}
+
+/* Header and navigation */
+.header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 30px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule);
+}
+.header nav { display: flex; align-items: center; gap: 32px; }
+.header nav a {
+  position: relative;
+  padding: 4px 0;
+  color: var(--muted);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: .15em;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color .2s ease;
+}
+.header nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  height: 1px;
+  background: currentColor;
+  transition: right .2s ease;
+}
+.header nav a:hover { color: var(--green); }
+.header nav a:hover::after { right: 0; }
+
+/* Text and portrait share a fluid two-column area on wider screens. */
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(225px, 23vw, 295px);
+  gap: clamp(36px, 5.4vw, 86px);
+  align-items: center;
+  padding: clamp(44px, 5vw, 70px) 0 32px;
+}
+.intro-copy { min-width: 0; }
+.intro h1 {
+  margin: 0 0 20px;
+  color: var(--accent);
+  font-size: clamp(33px, 3.25vw, 42px);
+  font-weight: 400;
+  letter-spacing: -.02em;
+  line-height: 1.07;
+  text-wrap: balance;
+}
+.intro .role {
+  margin-bottom: 24px;
+  color: var(--ink);
+  font-size: 20px;
+  font-style: italic;
+  line-height: 1.4;
+}
+.intro p {
+  max-width: 70ch;
+  margin: 0 0 16px;
+  font-size: 18.5px;
+  line-height: 1.65;
+}
+.intro p:last-child { margin-bottom: 0; }
+.intro a[href^="mailto:"] { overflow-wrap: anywhere; }
+.inline-link {
+  color: var(--link);
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  transition: color .2s ease, background-size .2s ease;
+}
+.inline-link:hover { color: var(--link-hover); background-size: 0 1px; }
+.figure { width: 100%; margin: 0; justify-self: end; }
+.figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--photo-border);
+  border-radius: 4px;
+  background: #eee8dd;
+  box-shadow: 0 8px 24px rgba(63,52,40,.1);
+}
+
+/* Section headings */
+.rubric {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 38px 0 16px;
+}
+.rubric .label {
+  flex: 0 0 auto;
+  color: var(--green);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.rubric .rule { flex: 1; min-width: 0; height: 1px; background: var(--rule); }
+
+/* One research column, with a precisely aligned action column on wide screens. */
+.entry { width: 100%; padding: 18px 0 25px; }
+.entry + .entry {
+  margin-top: 0;
+  padding-top: 28px;
+  border-top: 1px solid var(--rule-soft);
+}
+.entry-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 234px;
+  align-items: start;
+  column-gap: clamp(24px, 3.4vw, 52px);
+}
+.entry-header--full { grid-template-columns: minmax(0, 1fr); }
+.entry .draft-note {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: .035em;
+  line-height: 1.5;
+}
+.entry-info { min-width: 0; }
+.entry h2 {
+  max-width: 1100px;
+  margin: 0 0 4px;
+  color: var(--accent);
+  font-size: clamp(24px, 2.15vw, 28px);
+  font-weight: 400;
+  letter-spacing: -.015em;
+  line-height: 1.26;
+  overflow-wrap: break-word;
+}
+.entry .byline {
+  margin: 0;
+  color: var(--muted);
+  font-size: 18px;
+  font-style: italic;
+}
+.entry .byline a {
+  color: var(--link);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(116,83,61,.22);
+  transition: border-color .2s ease, color .2s ease;
+}
+.entry .byline a:hover { color: var(--link-hover); border-bottom-color: currentColor; }
+
+.paper-actions {
+  display: grid;
+  grid-template-columns: 90px 132px;
+  align-items: center;
+  justify-self: end;
+  gap: 12px;
+  padding-top: 1px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+/* The single Abstract button occupies exactly the same right-hand column. */
+.paper-actions > :only-child { grid-column: 2; }
+.paper-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 36px;
+  padding: 6px 10px;
+  border: 1px solid var(--rule);
+  border-radius: 40px;
+  background: transparent;
+  color: var(--link);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  line-height: 1.2;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.paper-action:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(98,74,53,.04);
+}
+.paper-action:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
+.toggle-mark {
+  display: inline-block;
+  width: .8em;
+  margin-left: .4em;
+  text-align: center;
+  font-size: 14.5px;
+}
+
+/* Expanded abstracts have a comfortable reading width even on large monitors. */
+.abstract-panel {
+  width: 100%;
+  max-width: 1000px;
+  margin: 20px 0 0;
+  padding: 20px 24px;
+  background: var(--panel-bg);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 4px 4px 0;
+  color: #3b3630;
+  animation: slideDown .3s ease-out forwards;
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.abstract-panel[hidden] { display: none; }
+.abstract-panel p {
+  max-width: 78ch;
+  margin: 0;
+  font-size: 18.5px;
+  line-height: 1.65;
+}
+
+.bottom {
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+/* Tablet: keep side-by-side content only while the text has enough room. */
+@media (max-width: 960px) {
+  .intro {
+    grid-template-columns: minmax(0, 1fr) minmax(210px, 26%);
+    gap: clamp(26px, 4.2vw, 42px);
+  }
+  .intro h1 { font-size: clamp(33px, 4.35vw, 40px); }
+}
+
+/* When there is not enough room for both columns, keep the action group
+   together on a dedicated row, consistently aligned to the right. */
+@media (max-width: 680px) {
+  .entry-header { grid-template-columns: minmax(0, 1fr); row-gap: 12px; }
+  .paper-actions { justify-self: end; }
+}
+
+/* Compact tablets / mobile: one clear reading column. */
+@media (max-width: 740px) {
+  .intro { grid-template-columns: minmax(0, 1fr); gap: 28px; padding: 40px 0 22px; }
+  .intro-copy { max-width: 720px; }
+  .figure { justify-self: start; max-width: 235px; }
+  .rubric { margin-top: 34px; }
+  .entry h2 { font-size: 26px; }
+}
+
+@media (max-width: 520px) {
+  .sheet { padding: 28px 22px 52px; }
+  .header nav { gap: 24px; }
+  .intro { gap: 26px; padding: 34px 0 18px; }
+  .intro h1 { font-size: clamp(32px, 7.8vw, 38px); }
+  .intro .role { margin-bottom: 18px; font-size: 18px; }
+  .intro p { font-size: 17.5px; line-height: 1.6; }
+  .figure { max-width: min(210px, 65vw); }
+  .rubric { gap: 14px; margin: 33px 0 12px; }
+  .rubric .label { font-size: 13.5px; letter-spacing: .15em; }
+  .entry { padding: 18px 0 22px; }
+  .entry + .entry { padding-top: 24px; }
+  .entry-header { row-gap: 12px; }
+  .entry h2 { font-size: 23px; }
+  .entry .byline { font-size: 17.5px; }
+  .paper-action { min-height: 39px; font-size: 12.5px; }
+  .abstract-panel { margin-top: 17px; padding: 16px 18px; }
+  .abstract-panel p { font-size: 17.5px; line-height: 1.6; }
+  .bottom { margin-top: 44px; }
+}
+@media (max-width: 360px) {
+  .header nav { gap: 18px; }
+  .header nav a { font-size: 12px; }
+  .intro h1 { font-size: 30px; }
+  .rubric { gap: 10px; }
+  .rubric .label { font-size: 12.5px; letter-spacing: .12em; }
+  .paper-actions { gap: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <div class="intro-copy">
+        <h1 id="page-title">Andrea Di Giovan Paolo</h1>
+        
+ <p>I am a PhD Candidate in Economics at Northwestern University. I work in microeconomic theory, with a focus on mechanism and information design.</p>
+
+<p>I am particularly interested in how informational and institutional constraints affect policy and market design, with applications to corrective taxation, insurance markets, and anti-discrimination policy.</p>
+        <p>You can reach me at <a class="inline-link" href="mailto:andreadigiovanpaolo@u.northwestern.edu">andreadigiovanpaolo@<wbr>u.northwestern.edu</a>. My <a class="inline-link" href="#">CV</a> is available here.</p>
+      </div>
+      <figure class="figure">
+        <img src="photo.jpg" alt="Andrea Di Giovan Paolo">
+      </figure>
+    </section>
+
+    <section id="research" aria-labelledby="job-market-paper">
+      <div class="rubric">
+        <div class="label" id="job-market-paper">Job Market Paper</div>
+        <div class="rule" aria-hidden="true"></div>
+      </div>
+      <article class="entry">
+        <div class="entry-header entry-header--full">
+          <div class="entry-info">
+            <h2>Robust Alignment of Incentives</h2>
+            <p class="draft-note">Draft coming soon.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section aria-labelledby="working-papers">
+      <div class="rubric">
+        <div class="label" id="working-papers">Working Papers</div>
+        <div class="rule" aria-hidden="true"></div>
+      </div>
+      <article class="entry">
+        <div class="entry-header">
+          <div class="entry-info">
+            <h2>Persuasion in Lemons Markets</h2>
+            <div class="byline">with <a href="https://jhigueco.github.io" target="_blank" rel="noopener noreferrer">Jose Higueras</a></div>
+          </div>
+          <div class="paper-actions">
+            <a class="paper-action" href="https://andreadigiovanpaolo.github.io/files/persuasion_lemons.pdf" target="_blank" rel="noopener noreferrer">Paper</a>
+            <button class="paper-action abstract-button" type="button" aria-expanded="false" aria-controls="abstract-persuasion">Abstract <span class="toggle-mark" aria-hidden="true">+</span></button>
+          </div>
+        </div>
+        <div class="abstract-panel" id="abstract-persuasion" hidden>
+          <p>We study information disclosure in competitive markets with adverse selection. Sellers privately observe product quality, with higher quality entailing higher production costs, while buyers trade at the market-clearing price after observing a public signal. Because sellers’ participation in trade conveys information about quality, the designer faces endogenous constraints in the set of posteriors that she can induce. We reformulate the designer’s problem as a martingale optimal transport exercise with an additional condition that rules out further information transmission through sellers’ participation decisions, and characterize the optimal signals. When the designer maximizes trade volume, the solution features negative-assortative matching of inefficient and efficient sellers. When the objective is a weighted combination of price and surplus, optimal signals preserve this structure as long as the weight on the price is high enough, otherwise they fully reveal low-quality types while pooling middle types with high-quality sellers.</p>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-header">
+          <div class="entry-info">
+            <h2>Price Impact of Insurance</h2>
+            <div class="byline">with <a href="https://jhigueco.github.io" target="_blank" rel="noopener noreferrer">Jose Higueras</a></div>
+          </div>
+          <div class="paper-actions">
+            <a class="paper-action" href="https://jhigueco.github.io/assets/files/Price%20Impact%20of%20Insurance.pdf" target="_blank" rel="noopener noreferrer">Paper</a>
+            <button class="paper-action abstract-button" type="button" aria-expanded="false" aria-controls="abstract-insurance">Abstract <span class="toggle-mark" aria-hidden="true">+</span></button>
+          </div>
+        </div>
+        <div class="abstract-panel" id="abstract-insurance" hidden>
+          <p>This paper analyzes optimal insurance design when the insurer internalizes the effect of coverage on third-party service prices. A monopolistic insurer contracts with risk-averse agents who have sequential two-dimensional private information and preferences represented by Yaari’s dual utility. Insurance contracts shape service demand and, through a market-clearing condition, determine equilibrium third-party prices. We show that contracts take simple forms —either full coverage after a deductible is paid or limited coverage with an out-of-pocket maximum— closely mirroring real-world insurance plans. Technically, we formulate the problem as a sequential screening model and solve it using tools from optimal transport theory.</p>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-header">
+          <div class="entry-info">
+            <h2>Fertility-Based Discrimination</h2>
+            <div class="byline">with <a href="https://giacomomarcolin.github.io" target="_blank" rel="noopener noreferrer">Giacomo Marcolin</a></div>
+          </div>
+          <div class="paper-actions">
+            <a class="paper-action" href="https://giacomomarcolin.github.io/files/papers/digiovanpaolo_marcolin_pda.pdf" target="_blank" rel="noopener noreferrer">Paper</a>
+            <button class="paper-action abstract-button" type="button" aria-expanded="false" aria-controls="abstract-fertility">Abstract <span class="toggle-mark" aria-hidden="true">+</span></button>
+          </div>
+        </div>
+        <div class="abstract-panel" id="abstract-fertility" hidden>
+          <p>Identifying the role of expected fertility as a driver of gender discrimination is crucial to guide policy solutions, but is hindered by the fact that pregnancy discrimination is typically addressed by broader gender-discrimination policies. This was not the case in the U.S., where before the 1978 Pregnancy Discrimination Act (PDA) pregnancy constituted a legal exception to existing gender discrimination laws. Exploiting states’ staggered adoption of laws similar to the PDA, we use difference-in-differences estimates based on survey data to show that the PDA reduced employment and hiring of women of fertile age, while having no detectable effect on dismissals. Our estimates imply that nearly 30% of the gender employment gap at the time was due to potential fertility. A simple search-and-matching model explains these results: by raising firing costs for discriminating employers, the PDA discouraged hiring but was not enforced strongly enough to prevent dismissals of pregnant employees. Finally, we show that pre-existing equal pay laws limited wage adjustments, exacerbating the negative effect on employment.</p>
+        </div>
+      </article>
+
+
+    </section>
+
+    <section aria-labelledby="work-in-progress">
+      <div class="rubric">
+        <div class="label" id="work-in-progress">Work in Progress</div>
+        <div class="rule" aria-hidden="true"></div>
+      </div>
+
+      <article class="entry">
+        <div class="entry-header entry-header--full">
+          <div class="entry-info">
+            <h2>Selling Information</h2>
+            <div class="byline">with <a href="https://jhigueco.github.io" target="_blank" rel="noopener noreferrer">Jose Higueras</a></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-header entry-header--full">
+          <div class="entry-info">
+            <h2>Discrimination by Proxy</h2>
+            <div class="byline">with <a href="https://giacomomarcolin.github.io" target="_blank" rel="noopener noreferrer">Giacomo Marcolin</a></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-header entry-header--full">
+          <div class="entry-info">
+            <h2>How to Sell Pandora's box</h2>
+            <div class="byline">with <a href="https://sites.google.com/u.northwestern.edu/yutongzhang/home" target="_blank" rel="noopener noreferrer">Yutong Zhang</a></div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+  </main>
+
+  <footer class="bottom">Andrea Di Giovan Paolo</footer>
+</div>
+
+<script>
+document.querySelectorAll('.abstract-button').forEach(function(button){
+  button.addEventListener('click',function(){
+    var panel=document.getElementById(button.getAttribute('aria-controls'));
+    var isOpen=button.getAttribute('aria-expanded')==='true';
+    button.setAttribute('aria-expanded',String(!isOpen));
+    panel.hidden=isOpen;
+    var mark=button.querySelector('.toggle-mark');
+    if(mark) mark.textContent=isOpen?'+':'−';
+  });
+});
+</script>
+</body>
+</html>
