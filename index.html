@@ -293,13 +293,9 @@ a:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; border-r
   .intro h1 { font-size: clamp(33px, 4.35vw, 40px); }
 }
 
-/* On narrow screens the buttons belong immediately below each paper title,
-   instead of occupying a fixed-width column at the right edge. */
+/* On narrow screens, place actions beneath the publication details. */
 @media (max-width: 680px) {
-  .entry-header {
-    grid-template-columns: minmax(0, 1fr);
-    row-gap: 12px;
-  }
+  .entry-header { grid-template-columns: minmax(0, 1fr); row-gap: 12px; }
   .paper-actions {
     display: flex;
     flex-wrap: wrap;
@@ -326,7 +322,7 @@ a:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; border-r
 @media (max-width: 740px) {
   .intro { grid-template-columns: minmax(0, 1fr); gap: 28px; padding: 40px 0 22px; }
   .intro-copy { max-width: 720px; }
-  /* On mobile, the portrait is centered above the name and biography. */
+  /* The portrait precedes and centers over the name on phones. */
   .figure { order: -1; justify-self: center; max-width: 235px; }
   .rubric { margin-top: 34px; }
   .entry h2 { font-size: 26px; }
@@ -365,7 +361,9 @@ a:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; border-r
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
 
-/* Mobile: keep the full name on a single line without horizontal scrolling. */
+.external-link-icon { display: none; }
+
+/* Refined mobile header and understated small-cap publication links. */
 @media (max-width: 740px) {
   .intro h1 {
     font-size: clamp(26px, 8.25vw, 40px);
@@ -387,6 +385,7 @@ a:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; border-r
     justify-content: flex-start;
     max-width: 100%;
     padding: 0;
+    gap: 25px;
   }
   .paper-actions > :only-child { grid-column: auto; }
   .paper-action {
@@ -395,28 +394,13 @@ a:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; border-r
     display: inline-flex;
     align-items: center;
     justify-content: flex-start;
-    border-radius: 0;
-    background: none;
-    box-shadow: none;
-    white-space: nowrap;
-  }
-  .paper-action:hover { background: none; }
-  .paper-action[href]::after {
-    content: "\2197";
-    font: 12px Arial, Helvetica, sans-serif;
-    margin-left: 5px;
-  }
-  .toggle-mark { margin-left: .35em; font-size: inherit; }
-}
-
-/* Option B: small editorial navigation labels, without pill buttons. */
-@media (max-width: 740px) {
-  .paper-actions { gap: 25px; }
-  .paper-action {
     min-height: 42px;
     padding: 9px 0 7px;
     border: 0;
     border-bottom: 1px solid rgba(116, 83, 61, .35);
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
     color: var(--link);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 11.5px;
@@ -425,8 +409,23 @@ a:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; border-r
     letter-spacing: .115em;
     text-transform: uppercase;
     text-decoration: none;
+    white-space: nowrap;
   }
-  .paper-action:hover { color: var(--link-hover); border-bottom-color: currentColor; }
+  .paper-action:hover {
+    color: var(--link-hover);
+    border-bottom-color: currentColor;
+    background: none;
+  }
+  .toggle-mark { margin-left: .35em; font-size: inherit; }
+  /* SVG icon: unlike the Unicode northeast arrow, never becomes an emoji on iOS. */
+  .external-link-icon {
+    display: inline-block;
+    flex: 0 0 12px;
+    width: 12px;
+    height: 12px;
+    margin-left: 5px;
+    stroke: currentColor;
+  }
 }
 </style>
 </head>
@@ -474,7 +473,7 @@ a:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; border-r
             <div class="byline">with <a href="https://jhigueco.github.io" target="_blank" rel="noopener noreferrer">Jose Higueras</a></div>
           </div>
           <div class="paper-actions">
-            <a class="paper-action" href="https://andreadigiovanpaolo.github.io/files/persuasion_lemons.pdf" target="_blank" rel="noopener noreferrer">Paper</a>
+            <a class="paper-action" href="https://andreadigiovanpaolo.github.io/files/persuasion_lemons.pdf" target="_blank" rel="noopener noreferrer">Paper <svg class="external-link-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M3 9 L9 3 M4 3 H9 V8" stroke="currentColor" stroke-width="1.1" stroke-linecap="square" stroke-linejoin="miter"/></svg></a>
             <button class="paper-action abstract-button" type="button" aria-expanded="false" aria-controls="abstract-persuasion">Abstract <span class="toggle-mark" aria-hidden="true">+</span></button>
           </div>
         </div>
@@ -490,7 +489,7 @@ a:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; border-r
             <div class="byline">with <a href="https://jhigueco.github.io" target="_blank" rel="noopener noreferrer">Jose Higueras</a></div>
           </div>
           <div class="paper-actions">
-            <a class="paper-action" href="https://jhigueco.github.io/assets/files/Price%20Impact%20of%20Insurance.pdf" target="_blank" rel="noopener noreferrer">Paper</a>
+            <a class="paper-action" href="https://jhigueco.github.io/assets/files/Price%20Impact%20of%20Insurance.pdf" target="_blank" rel="noopener noreferrer">Paper <svg class="external-link-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M3 9 L9 3 M4 3 H9 V8" stroke="currentColor" stroke-width="1.1" stroke-linecap="square" stroke-linejoin="miter"/></svg></a>
             <button class="paper-action abstract-button" type="button" aria-expanded="false" aria-controls="abstract-insurance">Abstract <span class="toggle-mark" aria-hidden="true">+</span></button>
           </div>
         </div>
@@ -506,7 +505,7 @@ a:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; border-r
             <div class="byline">with <a href="https://giacomomarcolin.github.io" target="_blank" rel="noopener noreferrer">Giacomo Marcolin</a></div>
           </div>
           <div class="paper-actions">
-            <a class="paper-action" href="https://giacomomarcolin.github.io/files/papers/digiovanpaolo_marcolin_pda.pdf" target="_blank" rel="noopener noreferrer">Paper</a>
+            <a class="paper-action" href="https://giacomomarcolin.github.io/files/papers/digiovanpaolo_marcolin_pda.pdf" target="_blank" rel="noopener noreferrer">Paper <svg class="external-link-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M3 9 L9 3 M4 3 H9 V8" stroke="currentColor" stroke-width="1.1" stroke-linecap="square" stroke-linejoin="miter"/></svg></a>
             <button class="paper-action abstract-button" type="button" aria-expanded="false" aria-controls="abstract-fertility">Abstract <span class="toggle-mark" aria-hidden="true">+</span></button>
           </div>
         </div>
